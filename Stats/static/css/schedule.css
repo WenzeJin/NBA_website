@@ -1,0 +1,111 @@
+body {
+	background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://www.si.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTcwMDIzMjI5OTM4MDE3NjU3/opoc-88470-rawfinal.jpg);
+	height: 100vh;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	position: relative;
+}
+
+.pick-text {
+	/*margin-top: 5%;*/
+	/*margin-left: 17%;*/
+	text-align: center;
+}
+
+.container {;
+	margin-top: 2%;
+}
+
+.container div {
+	text-align: center;
+	left: 25%;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    width: 50%;
+}
+
+.btn-info {
+	background-color: #2883ea;
+	margin-left: 20px}
+
+button, input, optgroup, select, textarea {
+    margin-left: 20px;
+}
+
+.pick-text h1 {
+	text-align: center;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 40px;
+}
+
+.pick-text h1 span {
+	color: #2883ea;
+}
+
+.pick-text a {
+	border: 1px solid #fff;
+	padding: 10px 25px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 10px;
+	margin-top: 20px;
+	display: inline-block;
+	color: #fff;
+}
+
+.pick-text a:hover {
+	background: #fff;
+	color: #333;
+}
+
+/*h1 {*/
+/*	margin-bottom: 15%;*/
+/*}*/
+
+/*resposive*/
+
+@media (max-width:600px) {
+	.wrapper {
+		width: 100%;
+	}
+
+	.logo {
+		float: none;
+		width: 50%;
+		text-align: center;
+		margin: auto;
+	}
+
+	/*img {*/
+	/*	width: ;*/
+	/*}*/
+	.nav-area {
+		float: none;
+		margin-top: 0;
+	}
+
+	.nav-area li a {
+		padding: 5px;
+		font-size: 11px;
+	}
+
+	.nav-area {
+		text-align: center;
+	}
+
+	.pick-text {
+		width: 100%;
+		height: auto;
+		margin: 30% 0;
+	}
+
+	.pick-text h1 {
+		font-size: 20px;
+	}
+}

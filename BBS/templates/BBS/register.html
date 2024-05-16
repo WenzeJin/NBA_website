@@ -1,0 +1,14 @@
+{% extends 'BBS/base.html' %}
+{% block content %}
+    <br>
+    <div class="container">
+        <form method="post" action="{% url 'BBS:register' %}">
+            <h2>Register</h2>
+            <hr>
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <button type="submit" class="btn btn-primary">register</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ player.name }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{%  static  'css/style.css'  %}">
+    <link rel="stylesheet" href="{%  static  'css/player.css'  %}">
+    {#    <link rel="stylesheet" href="{%  static  'css/table.css'  %}">#}
+
+</head>
+
+<body>
+    <header>
+        <div class="wrapper">
+
+            <div class="logo">
+                <img src="{%  static 'images/logo.png' %}" alt="">
+            </div>
+
+            <ul class="nav-area">
+                <li><a href="/">Home</a></li>
+                <li><a href="/standings">Standings</a></li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/leagueleaders">League leaders</a></li>
+            </ul>
+
+        </div>
+
+    </header>
+
+    <div class="table-text">
+
+        <div class="title-avatar">
+            <img src="{{ photo }}" class="player-avatar">
+            <h1> {{ player.name }} </h1>
+            <div class="welcome-text">
+                <a href="/playerseasons/?player={{ player.name }}">Seasons</a>
+            </div>
+        </div>
+
+        <table class="content-table" id="roster-table">
+            <thead>
+
+                <tr>
+                    <th>Birthdate</th>
+                    <th>School</th>
+                    <th>Country</th>
+                    <th>Position</th>
+                    <th>Height</th>
+                    <th>Weight</th>
+                    <th>Draft year</th>
+                    <th>Draft number</th>
+                    <th>Team</th>
+                    <th>Experience</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>{{ player.birthdate }}</td>
+                    <td>{{ player.school }}</td>
+                    <td>{{ player.country }}</td>
+                    <td>{{ player.position }}</td>
+                    <td>{{ player.height }}</td>
+                    <td>{{ player.weight }}</td>
+                    <td>{{ player.draft_year }}</td>
+                    <td>{{ player.draft_number }}</td>
+                    <td><a href="/team/?team={{ player.team }}">{{ player.team }}</a></td>
+                    <td>{{ player.experience }}</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>

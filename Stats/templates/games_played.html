@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Games</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{%  static  'css/style.css'  %}">
+    <link rel="stylesheet" href="{%  static  'css/table.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="wrapper">
+
+            <div class="logo">
+                <img src="{%  static 'images/logo.png' %}" alt="">
+            </div>
+
+            <ul class="nav-area">
+                <li><a href="/">Home</a></li>
+                <li><a href="/standings">Standings</a></li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/leagueleaders">League leaders</a></li>
+            </ul>
+
+        </div>
+
+    </header>
+
+    <div class="table-text">
+        <h1><a href="/team/?team={{ team }}">{{ team }}</a></h1>
+        <table class="content-table" id="roster-table">
+            <thead>
+
+                <tr>
+                    <th>Date</th>
+                    <th>Opponent</th>
+                    <th>Result</th>
+                    <th>Record</th>
+                    <th>FG %</th>
+                    <th>3P %</th>
+                    <th>FT %</th>
+                    <th>PTS</th>
+                    <th>REB</th>
+                    <th>AST</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                {% for game in games %}
+                <tr>
+                    <td>{{ game.date }}</td>
+                    <td><a href="/team/?team={{ game.opponent }}">{{ game.opponent }}</a></td>
+                    <td>{{ game.wl }}</td>
+                    <td>{{ game.record }}</td>
+                    <td>{{ game.FG_PCT }}</td>
+                    <td>{{ game.FG3_PCT }}</td>
+                    <td>{{ game.FT_PCT }}</td>
+                    <td>{{ game.PTS }}</td>
+                    <td>{{ game.REB }}
+                    <td>{{ game.AST }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</body>
+<script src="{% static 'js/sortTable.js' %}"></script>
+
+</html>

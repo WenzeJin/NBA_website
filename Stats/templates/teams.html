@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teams</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{%  static  'css/style.css'  %}">
+    <link rel="stylesheet" href="{%  static  'css/teams.css'  %}">
+</head>
+
+<body>
+    <header>
+        <div class="wrapper">
+
+            <div class="logo">
+                <img src="{%  static 'images/logo.png' %}" alt="">
+            </div>
+
+            <ul class="nav-area">
+                <li><a href="/">Home</a></li>
+                <li><a href="/standings">Standings</a></li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/leagueleaders">League leaders</a></li>
+            </ul>
+
+        </div>
+
+    </header>
+
+    <div class="table-text">
+        <h1> ALL TEAMS</h1>
+        <table class="content-table" id="teams-table">
+            <thead>
+
+                <tr>
+                    <th onclick="sortTable(0)">Name</th>
+                    <th onclick="sortTable(1)">City</th>
+                    <th onclick="sortTable(2)">State</th>
+                    <th onclick="sortTable(3)">Year founded</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                {% for team in teams %}
+                <tr>
+                    <td><a id="a-team" href="/team/?team={{ team.nickname }}"> {{ team.full_name }}</a></td>
+                    <td>{{ team.city }}</td>
+                    <td>{{ team.state }}</td>
+                    <td>{{ team.year_founded }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+</body>
+<script src="{% static 'js/sortTable.js' %}"></script>
+
+</html>

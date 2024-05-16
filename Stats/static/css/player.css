@@ -1,0 +1,196 @@
+body {
+	background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://theundefeated.com/wp-content/uploads/2016/11/gettyimages-170830969_master.jpg);
+	height: 100vh;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	position: relative;
+}
+
+.welcome-text a {
+	margin: 0px 20px;
+}
+
+.title-text {
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.title-text h1 {
+	text-align: center;
+	color: #2883ea;
+	text-transform: uppercase;
+	font-size: 60px;
+}
+
+.title-text h1 span {
+	color: #2883ea;
+}
+
+.title-text a {
+	border: 1px solid #2883ea;
+	padding: 10px 25px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 14px;
+	margin-top: 20px;
+	display: inline-block;
+	color: #2883ea;
+}
+
+.title-text a:hover {
+	background: #2883ea;
+	color: #ffffff;
+}
+
+.content-table {
+	display: block;
+	border-collapse: collapse;
+	margin: 25px 0;
+	font-size: 0.9em;
+	min-width: 400px;
+	border-radius: 5px 5px 0 0;
+	overflow: auto;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+	background-color: transparent;
+	color: #ffffff;
+	text-align: left;
+	font-weight: bold;
+}
+
+.content-table tbody td {
+	background-color: transparent;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+tbody a {
+	color: #ffffff;
+	text-decoration: none;
+	text-transform: uppercase;
+	display: inline-block;
+}
+
+tbody a:hover {
+	text-decoration: none;
+	text-transform: uppercase;
+	display: inline-block;
+	color: #2883ea;
+}
+
+.content-table th,
+.content-table td {
+	padding: 12px 15px;
+	text-align: center;
+}
+
+h1 {
+	color: white;
+}
+
+a {
+	text-decoration: none;
+	text-transform: uppercase;
+	display: inline-block;
+	color: #ffffff;
+}
+
+a:hover {
+	color: #2883ea;
+}
+
+.content-table th {
+	/*cursor: pointer;*/
+	text-align: center;
+}
+
+.content-table tbody tr {
+	border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+	background-color: transparent;
+}
+
+.content-table tbody tr:nth-of-type(odd) {
+	background-color: transparent;
+}
+
+.content-table tbody tr:last-of-type {
+	border-bottom: 0px;
+}
+
+.content-table tbody tr.active-row {
+	font-weight: bold;
+	color: #2883ea;
+}
+
+
+.player-avatar {
+	width: 300px;
+	height: 240px;
+	margin-right:  50px;
+}
+
+.table-text {
+	position: absolute;
+	margin-left: 20%;
+	margin-top: 3%;
+	/*margin: 15% 30%;*/
+	text-align: center;
+}
+
+.table-text h1 {
+	text-align: center;
+	color: #2883ea;
+	text-transform: uppercase;
+	font-size: 60px;
+}
+
+.table-text h1 span {
+	color: #2883ea;
+	;
+}
+
+.title-avatar {
+	width: 100%;
+	display: inline-flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+@media (max-width:600px) {
+	.wrapper {
+		width: 100%;
+	}
+
+	.table-text {
+		width: 100%;
+		height: auto;
+		margin: 30% 0;
+	}
+
+	.title-text {
+		width: 100%;
+		height: auto;
+		margin: 30% 0;
+	}
+
+	.title-text h1 {
+		font-size: 30px;
+	}
+
+
+/*.player-avatar {*/
+/*	width: 50%;*/
+/*	text-align: center;*/
+/*	*/
+/*}*/
+}

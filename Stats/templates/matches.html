@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ day }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{%  static  'css/style.css'  %}">
+    <link rel="stylesheet" href="{%  static  'css/matches.css' %}">
+</head>
+
+<body>
+    <header>
+
+        <div class="wrapper">
+
+            <div class="logo">
+                <img src="{%  static 'images/logo.png' %}" alt="">
+            </div>
+
+            <ul class="nav-area">
+                <li><a href="/">Home</a></li>
+                <li><a href="/standings">Standings</a></li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/leagueleaders">League leaders</a></li>
+            </ul>
+
+        </div>
+
+    </header>
+
+    <div class="table-text">
+        <h1> {{ day }} {{ time }}</h1>
+        <table class="content-table" align="center">
+            <thead>
+
+                <tr>
+                    <th>Away</th>
+                    <th><span>.</span> </th>
+                    <th>Home</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                {% for match in matches %}
+                <tr>
+                    <td><a href="/team/?team={{ match.away }}">{{ match.away }}</a></td>
+                    <td> vs </td>
+                    <td><a href="/team/?team={{ match.home }}">{{ match.home }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</body>
+
+</html>

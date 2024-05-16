@@ -1,0 +1,25 @@
+{% extends 'BBS/base.html' %}
+{% block content %}
+    {% if not user.is_authenticated %}
+        <br>
+        <div class="container">
+            <div class="jumbotron">
+              <h1 class="display-4">NBA BBS</h1>
+              <p class="lead">This is where you can share your opinions on what is happening in NBA.</p>
+              <hr class="my-4">
+              <p>It seems that you are not logged in yet :)</p>
+              <a class="btn btn-primary btn-lg" href="{% url 'BBS:login' %}" role="button">Log In</a>
+            </div>
+        </div>
+    {% else %}
+        <br>
+        <div class="container">
+            <div class="jumbotron">
+              <h1 class="display-4">Welcome {{ user.username }}!</h1>
+              <p class="lead">This is where you can share your opinions on what is happening in NBA.</p>
+              <hr class="my-4">
+              <p>You are now logged in!</p>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
