@@ -1,0 +1,26 @@
+{% extends 'BBS/base.html' %}
+{% block content %}
+    {% if logged_in == False %}
+        <br>
+        <div class="container">
+            <div class="alert alert-warning" role="alert">
+              <h4 class="alert-heading">Oops!</h4>
+              <p>It seems that you are not logged in yet, please log in!</p>
+              <hr>
+              <button type="button" class="btn btn-outline-primary" href="{% url 'BBS:login' %}">Log In</button>
+            </div>
+        </div>
+    {% else %}
+        <br>
+        <div class="container">
+            <form method="post" action="{% url 'BBS:profile-edit' %}">
+                <h2>Log In</h2>
+                <hr>
+                {% csrf_token %}
+                {{ form }}
+                <br>
+                <button type="submit" class="btn btn-primary">Confirm</button>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

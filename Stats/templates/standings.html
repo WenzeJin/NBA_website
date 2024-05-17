@@ -1,43 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 {% load static %}
 
-<head>
-    <meta charset="UTF-8">
+{% block title %}
     <title>Standings</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{%  static  'css/style.css'  %}">
+{% endblock %}
+
+{% block style %}
     <link rel="stylesheet" href="{%  static  'css/standings.css'  %}">
+{% endblock %}
 
-</head>
-
-<body>
-    <div id="image-head" class="image-head">
-        <header>
-            <div class="wrapper">
-
-                <div class="logo">
-                    <img src="{%  static 'images/logo.png' %}" alt="">
-                </div>
-
-                <ul class="nav-area">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/standings">Standings</a></li>
-                    <li><a href="/schedule">Schedule</a></li>
-                    <li><a href="/teams">Teams</a></li>
-                    <li><a href="/leagueleaders">League leaders</a></li>
-                </ul>
-
-            </div>
-
-        </header>
-    </div>
-
+{% block content %}
     <div class="welcome-text">
         <h1><span>select conference</span></h1>
         <a href="/west">WEST</a>
         <a href="/east">EAST</a>
     </div>
-</body>
+{% endblock %}
 
-</html>
+
+

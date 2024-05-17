@@ -1,0 +1,68 @@
+{% extends 'BBS/base.html' %}
+{% block content %}
+    {% if logged_in == False %}
+        <br>
+        <div class="container">
+            <div class="alert alert-warning" role="alert">
+              <h4 class="alert-heading">Oops!</h4>
+              <p>It seems that you are not logged in yet, please log in!</p>
+              <hr>
+              <button type="button" class="btn btn-outline-primary" href="{% url 'BBS:login' %}">Log In</button>
+            </div>
+        </div>
+    {% else %}
+        <br>
+        <div class="container">
+            <div class="row-cols-1">
+                <div class="col">
+                    <div class="jumbotron">
+                      <h1 class="display-4">Hello, {{ user_info.nickname }}!</h1>
+                      <p class="lead">This is your user profile. You can change them as you like.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <table class="table">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">Item</th>
+                          <th scope="col" style="width: 70%">Info</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Username (unchangeable)</th>
+                          <td>{{ user.username }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Nickname</th>
+                          <td>{{ user_info.nickname }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Birthday</th>
+                          <td>{{ user_info.birthday }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Email</th>
+                          <td>{{ user_info.email }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Slogan</th>
+                          <td>{{ user_info.slogan }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <div class="row justify-content-center">
+
+                        <div class="col-4">
+                            <a href="{% url 'BBS:profile-edit' %}">
+                                <button type="button" class="btn btn-info">Edit</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

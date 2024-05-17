@@ -1,14 +1,25 @@
 from django.shortcuts import render
 from .scripts import standings, team, teams, player, schelude, leagueLeaders
 from .forms import DatePickerForm
-
+from BBS.models import *
 
 def index(request):
+    logged_in = request.user.is_authenticated
+    user_info = None
+    if logged_in:
+        logged_in = True
+        create_user_info_condition(request.user)
+        user_info = UserInfo.objects.filter(user=request.user)
+        user_info = user_info[0]
+    else:
+        logged_in = False
+
     return render(
         request,
         'index.html',
         {
             'title': 'Home page',
+            'nickname': user_info.nickname if logged_in else '',
         }
     )
 
