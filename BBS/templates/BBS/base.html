@@ -40,14 +40,20 @@
         <ul class="navbar-nav justify-content-end">
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'BBS:profile' %}">{{ user.username }}</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'BBS:profile' %}">
+                        <button type="button" class="btn btn-light">{{ user.username }}</button>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url "BBS:logout" %}">Log Out</a>
+                    <a class="nav-link" href="{% url "BBS:logout" %}">
+                        <button type="button" class="btn btn-outline-danger">Log Out</button>
+                    </a>
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link active" href="{% url "BBS:login" %}">Log In</a>
+                    <a class="nav-link active" href="{% url "BBS:login" %}">
+                        <button type="button" class="btn btn-outline-primary">Log In</button>
+                    </a>
                 </li>
             {% endif %}
         </ul>

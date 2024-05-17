@@ -6,14 +6,34 @@
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{%  static  'css/standings.css'  %}">
 {% endblock %}
 
 {% block content %}
-    <div class="welcome-text">
-        <h1><span>select conference</span></h1>
-        <a href="/west">WEST</a>
-        <a href="/east">EAST</a>
+    <div class="container">
+        <br><br><br>
+        <div class="row align-items-center">
+            <div class="col-md-auto mx-auto shadow rounded-lg">
+                <div class="container">
+                    <br>
+                    <div class="row">
+                        <h1>Select Conference</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="{% url 'Stats:west' %}">
+                                <button type="button" class="btn btn-outline-primary btn-block">WEST</button>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'Stats:east' %}">
+                                <button type="button" class="btn btn-outline-primary btn-block">EAST</button>
+                            </a>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 

@@ -10,26 +10,28 @@
 {% endblock %}
 
 {% block content %}
-    {% if not user.is_authenticated %}
-        <br>
-        <div class="container">
-            <div class="jumbotron">
-              <h1 class="display-4">NBA Stats</h1>
-              <p class="lead">This is where you can query current stats in NBA.</p>
-              <hr class="my-4">
-              <p>It seems that you are not logged in yet :). Log in or register to join our community!</p>
-              <a class="btn btn-primary btn-lg" href="{% url 'BBS:login' %}" role="button">Log In</a>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="jumbotron shadow-lg">
+                    {% if not user.is_authenticated %}
+                      <h1 class="display-4">NBA Stats</h1>
+                      <p class="lead">This is where you can query current stats in NBA.</p>
+                      <hr class="my-4">
+                      <p>It seems that you are not logged in yet :). Log in or register to join our community!</p>
+                      <a class="btn btn-primary btn-lg" href="{% url 'BBS:login' %}" role="button">Log In</a>
+                    {% else %}
+                      <h1 class="display-4">Welcome {{ nickname }}!</h1>
+                      <p class="lead">This is where you can share your opinions on what is happening in NBA.</p>
+                      <hr class="my-4">
+                      <p>You are now logged in!</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col">
+                <!--为了让牢大露出来的占位块-->
             </div>
         </div>
-    {% else %}
-        <br>
-        <div class="container">
-            <div class="jumbotron">
-              <h1 class="display-4">Welcome {{ nickname }}!</h1>
-              <p class="lead">This is where you can share your opinions on what is happening in NBA.</p>
-              <hr class="my-4">
-              <p>You are now logged in!</p>
-            </div>
-        </div>
-    {% endif %}
+    </div>
 {% endblock %}

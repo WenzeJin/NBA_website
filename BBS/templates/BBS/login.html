@@ -2,13 +2,30 @@
 {% block content %}
     <br>
     <div class="container">
-        <form method="post" action="{% url 'BBS:login' %}">
-            <h2>Log In</h2>
-            <hr>
-            {% csrf_token %}
-            {{ form }}
-            <br>
-            <button type="submit" class="btn btn-primary">log in</button>
-        </form>
+        <div class="row justify-content-sm-center">
+            <div class="col border border-primary rounded">
+                <div class="container">
+                    <br>
+                    <form method="post" action="{% url 'BBS:login' %}">
+
+                        <h2>Log In</h2>
+                        <hr>
+                        {% csrf_token %}
+                        {{ form }}
+                        <br>
+                        <button type="submit" class="btn btn-primary">log in</button>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col container-fluid">
+                <div class="alert alert-info" role="alert">
+                Not have an account yet? Go to <a href="{% url 'BBS:register' %}" class="alert-link">register</a> one!
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

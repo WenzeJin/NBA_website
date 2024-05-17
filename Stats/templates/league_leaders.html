@@ -6,49 +6,65 @@
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{%  static  'css/leagueleaders.css' %}">
+    <link rel="stylesheet" href="{%  static  'css/leaders.css'  %}">
 {% endblock %}
 
 {% block content %}
-        <div class="table-text">
-        <h1>League Leaders</h1>
-        <table class="content-table" id="roster-table">
-            <thead>
+    <br>
+    <div class="container bg-white shadow rounded">
+    <div class="container">
+        <div class="row justify-content-center">
+        <div class="col">
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-md-auto">
+                    <h1>League Leaders</h1>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <table class="table table-striped" id="roster-table">
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="col" >PER Rank</th>
+                            <th scope="col" >Name</th>
+                            <th scope="col" >PPG</th>
+                            <th scope="col" >RPG</th>
+                            <th scope="col" >APG</th>
+                            <th scope="col" >FG %</th>
+                            <th scope="col" >3P %</th>
+                            <th scope="col" >FT %</th>
+                            <th scope="col" >SPG</th>
+                            <th scope="col" >BPG</th>
+                            <th scope="col" >MPG</th>
+                        </tr>
 
-                <tr>
-                    <th onclick="sortTable(0)">PER Rank</th>
-                    <th onclick="sortTable(1)">Name</th>
-                    <th onclick="sortTable(2)">PPG</th>
-                    <th onclick="sortTable(3)">RPG</th>
-                    <th onclick="sortTable(4)">APG</th>
-                    <th onclick="sortTable(5)">FG %</th>
-                    <th onclick="sortTable(6)">3P %</th>
-                    <th onclick="sortTable(7)">FT %</th>
-                    <th onclick="sortTable(8)">SPG</th>
-                    <th onclick="sortTable(9)">BPG</th>
-                    <th onclick="sortTable(10)">MPG</th>
-                </tr>
+                    </thead>
 
-            </thead>
-
-            <tbody>
-                {% for player in leaders %}
-                <tr>
-                    <td>{{ player.PER }}</td>
-                    <td><a href="/player/?player={{ player.name }}">{{ player.name }}</a></td>
-                    <td>{{ player.PPG }}</td>
-                    <td>{{ player.RPG }}</td>
-                    <td>{{ player.APG }}</td>
-                    <td>{{ player.FG_PCT }}</td>
-                    <td>{{ player.FG3_PCT }}</td>
-                    <td>{{ player.FT_PCT }}</td>
-                    <td>{{ player.SPG }}</td>
-                    <td>{{ player.BPG }}
-                    <td>{{ player.MPG }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-
-        </table>
+                    <tbody>
+                        {% for player in leaders %}
+                        <tr>
+                            <th scope="row">{{ player.PER }}</th>
+                            <td><a href="/player/?player={{ player.name }}">{{ player.name }}</a></td>
+                            <td>{{ player.PPG }}</td>
+                            <td>{{ player.RPG }}</td>
+                            <td>{{ player.APG }}</td>
+                            <td>{{ player.FG_PCT }}</td>
+                            <td>{{ player.FG3_PCT }}</td>
+                            <td>{{ player.FT_PCT }}</td>
+                            <td>{{ player.SPG }}</td>
+                            <td>{{ player.BPG }}
+                            <td>{{ player.MPG }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
     </div>
+    </div>
+
+
+
 {% endblock %}

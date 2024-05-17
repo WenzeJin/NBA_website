@@ -7,7 +7,7 @@ from django.db import models
 class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=50, unique=True)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(blank=True)
     slogan = models.TextField(blank=True)
     birthday = models.DateField(null=True, blank=True)
 

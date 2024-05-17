@@ -7,11 +7,12 @@
     {% block title %}
     <title>NBA Stats</title>
     {% endblock %}
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{%  static  'css/style.css'  %}">
+{#    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">#}
+{#    <link rel="stylesheet" href="{%  static  'css/style.css'  %}">#}
+
     {% block style %}
-    <link rel="stylesheet" href="{%  static  'css/table.css' %}">
     {% endblock %}
+
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
@@ -55,14 +56,20 @@
         <ul class="navbar-nav justify-content-end">
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'BBS:profile' %}">{{ user.username }}</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'BBS:profile' %}">
+                        <button type="button" class="btn btn-light">{{ user.username }}</button>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url "BBS:logout" %}">Log Out</a>
+                    <a class="nav-link" href="{% url "BBS:logout" %}">
+                        <button type="button" class="btn btn-outline-danger">Log Out</button>
+                    </a>
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link active" href="{% url "BBS:login" %}">Log In</a>
+                    <a class="nav-link active" href="{% url "BBS:login" %}">
+                        <button type="button" class="btn btn-outline-primary">Log In</button>
+                    </a>
                 </li>
             {% endif %}
         </ul>
