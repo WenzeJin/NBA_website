@@ -1,5 +1,9 @@
 {% extends 'BBS/base.html' %}
 {% block content %}
+    <div class="container">
+    {% block optional_welcome %}
+    <div class="row">
+    
     {% if not user.is_authenticated %}
         <br>
         <div class="container">
@@ -17,9 +21,39 @@
             <div class="jumbotron">
               <h1 class="display-4">Welcome {{ nickname }}!</h1>
               <p class="lead">This is where you can share your opinions on what is happening in NBA.</p>
-              <hr class="my-4">
-              <p>You are now logged in!</p>
             </div>
         </div>
     {% endif %}
+    </div>
+    {% endblock %}
+    <!--posts-->
+    <div class="row">
+        <div class="col">
+
+            {% for post in posts %}
+            <div class="card rounded-lg shadow">
+                <div class="card-header bg-primary">
+                    <a href="{% url 'BBS:post-detail' post.id %}">
+                        <h5 class="text-white">{{ post.title }}</h5>
+                    </a>
+                    
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ post.abstract }}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    <b>{{ post.user_info.nickname }}</b>   @ {{ post.post_time }} 
+                    {% for tag in post.my_tags %}
+                        <span class="badge badge-info"># {{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    </div>
 {% endblock %}

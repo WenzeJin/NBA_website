@@ -5,13 +5,13 @@ Author: Wenze Jin
 Date: 2024/05/14
 """
 
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import *
-
+from django.db import models
 
 # Create your views here.
 
@@ -52,8 +52,19 @@ def user_logout(request):
     messages.success(request, 'You are now logged out!')
     return redirect("BBS:index")
 
+def fill_post_info(post):
+    post.user_info = get_object_or_404(UserInfo, user=post.user)
+    post.my_tags = post.tags.all()
+    return post
+
+def fill_posts_info(posts):
+    return [fill_post_info(post) for post in posts]
+
 
 def index(request):
+    posts = Post.objects.all()
+    posts = posts.order_by('-post_time')
+    posts = fill_posts_info(posts)
     logged_in = request.user.is_authenticated
     user_info = None
     if logged_in:
@@ -63,7 +74,7 @@ def index(request):
         user_info = user_info[0]
     else:
         logged_in = False
-    return render(request, 'BBS/index.html', {'nickname': user_info.nickname if logged_in else ""})
+    return render(request, 'BBS/index.html', {'nickname': user_info.nickname if logged_in else "", "posts": posts})
 
 
 def user_profile(request):
@@ -103,3 +114,10 @@ def edit_profile(request):
             return redirect('BBS:profile-edit')
     else:
         return render(request, 'BBS/profile_edit.html', {'logged_in': logged_in, 'user_info': user_info, 'form': form})
+
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    if post is None:
+        return HttpResponse('Post not found')
+    post = fill_post_info(post)
+    return render(request, 'BBS/post_detail.html', {'post': post})

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'BBS',
     'bootstrap_datepicker_plus',
     'crispy_forms',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 BOOTSTRAP4 = {
@@ -120,6 +122,16 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',  # 工具条功能
+        'filebrowserImageUploadUrl': '/ckeditor/upload/',  # 上传图片的url
+        'filebrowserUploadUrl': '/ckeditor/upload/',  # 上传文件的url
+    },
+}
 
 
 # Static files (CSS, JavaScript, Images)
