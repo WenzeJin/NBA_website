@@ -26,6 +26,8 @@ class UserInfoForm(forms.ModelForm):
             'slogan': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
+
+
 class PostAdminForm(forms.ModelForm):
     content = forms.CharField(
         widget=CKEditorUploadingWidget(
