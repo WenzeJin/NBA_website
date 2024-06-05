@@ -1,6 +1,15 @@
+"""forms.py: BBS表单
+This file is used to define the forms of BBS app.
+By using django forms, we can easily deploy the form in the front-end.
+
+author: Wenze Jin
+date: 2024-05-15
+"""
+
 from django.contrib.auth.models import User
 from django import forms
 from ckeditor.widgets import CKEditorWidget
+from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from .models import *
 
@@ -26,8 +35,6 @@ class UserInfoForm(forms.ModelForm):
             'slogan': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
-
-
 class PostAdminForm(forms.ModelForm):
     content = forms.CharField(
         widget=CKEditorUploadingWidget(
@@ -39,3 +46,21 @@ class PostAdminForm(forms.ModelForm):
         model = Post
         fields = '__all__'
         
+
+class PostEditForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'tags', 'abstract', 'content']
+        widget = {
+            'content': RichTextUploadingField(verbose_name='content'),
+        }
+
+
+class RateForm(forms.ModelForm):
+    class Meta:
+        model = Rate
+        fields = ['rate', 'content']
+        widget = {
+            'rate': forms.NumberInput(attrs={'class': 'form-control-range'}),
+        }
+

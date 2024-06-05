@@ -19,6 +19,22 @@ def player_info(name):
               'experience': row['SEASON_EXP']}
         return df
 
+def player_info_all(name):
+    player = [player for player in players.get_players() if player["full_name"] == name][0]
+
+    player_data = commonplayerinfo.CommonPlayerInfo(player_id=player["id"])
+    player_info_df = player_data.get_data_frames()[0]
+    print(player_info_df[['BIRTHDATE', 'SCHOOL', 'COUNTRY', 'POSITION', 'HEIGHT', 'WEIGHT', 'DRAFT_YEAR',
+                          'DRAFT_NUMBER', 'TEAM_NAME', 'SEASON_EXP']])
+    p = player_info_df.iloc[0]['BIRTHDATE']
+    # print(p.split("T")[0])
+
+    for index, row in player_info_df.iterrows():
+        df = {'name': name, 'birthdate': player_info_df.iloc[0]['BIRTHDATE'].split("T")[0], 'school': row['SCHOOL'],
+              'country': row['COUNTRY'], 'position': row['POSITION'], 'height': row['HEIGHT'], 'weight': row['WEIGHT'],
+              'draft_year': row['DRAFT_YEAR'], 'draft_number': row['DRAFT_NUMBER'], 'team': row['TEAM_NAME'],
+              'experience': row['SEASON_EXP']}
+        return df
 
 def player_seasons(name):
     player = [player for player in players.get_active_players() if player["full_name"] == name][0]
@@ -68,3 +84,7 @@ def get_id(name):
     player = [player for player in players.get_active_players() if player["full_name"] == name][0]
 
     return player["id"]
+
+
+def get_id_all(name):
+    player = [player for player in players.get_players() if player["full_name"] == name][0]

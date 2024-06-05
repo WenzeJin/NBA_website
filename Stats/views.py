@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .scripts import standings, team, teams, player, schelude, leagueLeaders
 from .forms import DatePickerForm
 from BBS.models import *
+from nba_api.stats.static import players
+
 
 def index(request):
     logged_in = request.user.is_authenticated
@@ -163,17 +165,38 @@ def games_played_view(request):
 
 def player_view(request):
     player_name = request.GET.get('player')
-    url = "https://cdn.nba.com/headshots/nba/latest/1040x760/"
-    player_id = player.get_id(player_name)
-    url += str(player_id)
-    url += ".png"
+    active = players.get_active_players()
+    active = [each['full_name'] for each in active]
+    present = False
+    if player_name in active:
+        present = True
+        url = "https://cdn.nba.com/headshots/nba/latest/1040x760/"
+        player_id = player.get_id(player_name)
+        url += str(player_id)
+        url += ".png"
+    else:
+        url = "#"
+
+    rated = False
+    rating = 0.0
+
+    entries = Rate.objects.filter(player=player_name)
+    if len(entries) > 0:
+        rated = True
+    for each in entries:
+        rating += float(each.rate) / len(entries)
+
+    rating = round(rating, 1)
 
     return render(
         request,
         'player.html',
         {
-            'player': player.player_info(player_name),
+            'player': player.player_info_all(player_name),
             'photo': url,
+            'rated': rated,
+            'rating': rating,
+            'present': present,
         }
     )
 
@@ -214,3 +237,16 @@ def player_seasons_view(request):
             'seasons': player.player_seasons(player_name),
         }
     )
+
+
+def search_player(request):
+    query = request.GET.get('query')
+    if not query:
+        query = ""
+    all_players = players.get_players()
+    if query != "":
+        filtered_players = players.find_players_by_full_name(query)
+        filtered_players = [each['full_name'] for each in filtered_players]
+    else:
+        filtered_players = [each['full_name'] for each in all_players]
+    return render(request, 'search_player.html', {'query': query, 'players': filtered_players})

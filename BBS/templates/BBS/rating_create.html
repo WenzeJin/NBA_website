@@ -1,10 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'BBS/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Create Rating</title>
+{% endblock %}
+
+{% block content %}
+    {{ form.media }}
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col rounded shadow">
+                <div class="container">
+                    <br>
+                    <form method="post" action="{% url 'BBS:rating-create' player %}">
+                        <div class="row justify-content-lead">
+                            <div class="col-md-auto">
+                                <h1><i>Creating Rating For </i></h1>
+                                <h2>{{ player }}</h2>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                {% csrf_token %}
+                                {{ form }}
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+                            <button type="submit" class="btn btn-success"> Commit </button>
+                        </div>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+{% endblock %}

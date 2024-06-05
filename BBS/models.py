@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from ckeditor.fields import RichTextField
 
@@ -16,10 +17,12 @@ class UserInfo(models.Model):
     def __str__(self) -> str:
         return "User: " + self.user.username + " Nickname: " + self.nickname
 
+
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
     create_time = models.DateTimeField(auto_now_add=True)
-    
+    description = models.TextField(max_length=200, blank=True)
+
     def __str__(self) -> str:
         return "Tag: " + self.name
 
@@ -31,10 +34,20 @@ class Post(models.Model):
     content = RichTextField()
     post_time = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(Tag, blank=True)
-    
+
     def __str__(self) -> str:
         return "Post: " + self.title + " User: " + self.user.username
 
+
+class Rate(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    player = models.CharField(max_length=100, blank=False, default="Default Player")
+    rate = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    rate_time = models.DateTimeField(auto_now_add=True)
+    content = models.TextField(max_length=500, blank=True)
+
+    def __str__(self) -> str:
+        return "Player: " + self.player + " Rate: " + str(self.rate) + " From: " + self.user.username
 
 def create_user_info(user: User):
     entries = UserInfo.objects.filter(user=user)
@@ -51,4 +64,3 @@ def create_user_info_condition(user: User):
     if len(entries) == 0:
         entry = UserInfo.objects.create(user=user, nickname=user.username)
         entry.save()
-

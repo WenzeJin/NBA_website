@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'BBS',
     'bootstrap_datepicker_plus',
     'crispy_forms',
+    'crispy_bootstrap4',
     'ckeditor',
     'ckeditor_uploader',
 ]
@@ -139,3 +140,9 @@ CKEDITOR_CONFIGS = {
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,  'static')
+
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}
-    <title>BBS Login</title>
+    <title>Default Title</title>
     {% endblock %}
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,7 +33,21 @@
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'BBS:index' %}">Home <span class="sr-only">(current)</span></a>
           </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'BBS:tags' %}">By Tag</a>
+          </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'BBS:ratings' %}">Ratings</a>
+          </li>
+          {% if user.is_authenticated %}
           <li class="nav-item active">
+            <a class="nav-link" href="{% url 'BBS:user-posts' user.username %}">My Posts</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'BBS:ratings-by-user' user.username %}">My Ratings</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'Stats:index' %}">Stats</a>
           </li>
         </ul>
@@ -42,6 +56,11 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'BBS:profile' %}">
                         <button type="button" class="btn btn-light">{{ user.username }}</button>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "BBS:post-create" %}">
+                        <button type="button" class="btn btn-success">New Post</button>
                     </a>
                 </li>
                 <li class="nav-item">

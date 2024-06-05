@@ -27,21 +27,44 @@
             </div>
         </div>
         <hr>
-        <div class="row">
-            <div class="col">
-                <div class="card rounded-lg">
-                    <div class="card-body">
-                        <p class="card-text">{{ post.abstract }}</p>
+        <div class="row justify-content-center shadow rounded">
+            <div class="col-lg-11">
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <div class="card rounded-lg">
+                            <div class="card-body">
+                                <p class="card-text">{{ post.abstract }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        {{ post.content|safe }}
+                    </div>
+                </div>
+                <br>
             </div>
         </div>
         <br>
-        <div class="row">
-            <div class="col">
-                {{ post.content|safe }}
+        {% if user_own %}
+            <div class="row justify-content-center">
+                <div class="col-md-auto">
+                    <a href="{% url 'BBS:post-edit' post.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'BBS:post-delete' post.id %}" class="btn btn-danger">delete</a>
+                </div>
+            </div>
+            <br>
+        {% endif %}
+        <div class="row justify-content-center">
+            <div class="col-md-auto">
+                Copyright © <b>{{ post.user_info.nickname }}</b> @ {{ post.post_time }} <br>
+                Link to this post whenever you need copy or share: <a href="{% url 'BBS:post-detail' post.id %}">Link</a>.
             </div>
         </div>
         <br>
+        
     </div>
 {% endblock %}

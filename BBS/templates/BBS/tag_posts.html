@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'BBS/index.html' %}
+
+{% block title %}
+<title>Tag: {{ tag.name }}</title>
+{% endblock %}
+
+{% block optional_welcome %}
+    <h1 class="display-4">Tag: <i><b>{{ tag.name }}</b></i></h1>
+    <h3>{{ tag.description }}</h3>
+    <hr>
+{% endblock %}

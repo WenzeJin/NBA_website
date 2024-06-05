@@ -6,54 +6,84 @@
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{%  static  'css/player.css'  %}">
 {% endblock %}
 
 {% block content %}
-    <div class="table-text">
-
-        <div class="title-avatar">
-            <img src="{{ photo }}" class="player-avatar">
-            <h1> {{ player.name }} </h1>
-            <div class="welcome-text">
-                <a href="/playerseasons/?player={{ player.name }}">Seasons</a>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row justify-content-center">
+            {% if present %}
+            <div class="col">
+                <img src="{{ photo }}" class="rounded-pill shadow" alt="{{ player.name }}" height="175">
+            </div>
+            {% endif %}
+            <div class="col">
+                <div class="row ml-0">
+                    <h1>{{ player.name }}</h1>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-auto">
+                        {% if rated %}
+                            <h3>Rating: <b><span class="text-info">{{ rating }} </span>/ 5</b></h3>
+                        {% else %}
+                            <h3>Rating: <b><span class="text-info">No Ratings </span>/ 5</b></h3>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-auto">
+                        <a href="{% url 'BBS:ratings-by-player' player.name %}"><button class="btn btn-outline-info">All ratings of {{ player.name }}</button></a>
+                    </div>
+                    <div class="col-md-auto">
+                        <a href="{% url 'BBS:rating-create' player.name %}"><button class="btn btn-outline-info">Rate {{ player.name }}</button></a>
+                    </div>
+                    {% if present %}
+                    <div class="col-md-auto">
+                        <a href="/playerseasons/?player={{ player.name }}"><button class="btn btn-outline-info">Seasons</button></a>
+                    </div>
+                    {% else %}
+                    <div class="col-md-auto">
+                        <h4><i>(Historic)</i></h4>
+                    </div>
+                    {% endif %}
+                </div>
+                <br>
+                <div class="row rounded-lg shadow">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Birthdate</th>
+                                <th scope="col">School</th>
+                                <th scope="col">Country</th>
+                                <th scope="col">Position</th>
+                                <th scope="col">Height</th>
+                                <th scope="col">Weight</th>
+                                <th scope="col">Draft year</th>
+                                <th scope="col">Draft number</th>
+                                <th scope="col">Team</th>
+                                <th scope="col">Experience</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ player.birthdate }}</td>
+                                <td>{{ player.school }}</td>
+                                <td>{{ player.country }}</td>
+                                <td>{{ player.position }}</td>
+                                <td>{{ player.height }}</td>
+                                <td>{{ player.weight }}</td>
+                                <td>{{ player.draft_year }}</td>
+                                <td>{{ player.draft_number }}</td>
+                                <td><a href="/team/?team={{ player.team }}">{{ player.team }}</a></td>
+                                <td>{{ player.experience }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
-        <table class="content-table" id="roster-table">
-            <thead>
-
-                <tr>
-                    <th>Birthdate</th>
-                    <th>School</th>
-                    <th>Country</th>
-                    <th>Position</th>
-                    <th>Height</th>
-                    <th>Weight</th>
-                    <th>Draft year</th>
-                    <th>Draft number</th>
-                    <th>Team</th>
-                    <th>Experience</th>
-                </tr>
-
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>{{ player.birthdate }}</td>
-                    <td>{{ player.school }}</td>
-                    <td>{{ player.country }}</td>
-                    <td>{{ player.position }}</td>
-                    <td>{{ player.height }}</td>
-                    <td>{{ player.weight }}</td>
-                    <td>{{ player.draft_year }}</td>
-                    <td>{{ player.draft_number }}</td>
-                    <td><a href="/team/?team={{ player.team }}">{{ player.team }}</a></td>
-                    <td>{{ player.experience }}</td>
-                </tr>
-            </tbody>
-
-        </table>
-
     </div>
+
 {% endblock %}

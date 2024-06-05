@@ -1,4 +1,9 @@
 {% extends 'BBS/base.html' %}
+
+{% block title %}
+    <title>NBA BBS</title>
+{% endblock %}
+
 {% block content %}
     <div class="container">
     {% block optional_welcome %}
@@ -32,19 +37,25 @@
 
             {% for post in posts %}
             <div class="card rounded-lg shadow">
-                <div class="card-header bg-primary">
-                    <a href="{% url 'BBS:post-detail' post.id %}">
-                        <h5 class="text-white">{{ post.title }}</h5>
-                    </a>
-                    
-                </div>
+
+
                 <div class="card-body">
+                    <a href="{% url 'BBS:post-detail' post.id %}">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                    </a>
                     <p class="card-text">{{ post.abstract }}</p>
+                    {% if post.user == user %}
+                        <a href="{% url 'BBS:post-edit' post.id %}" class="card-link text-info">Edit</a>
+                        <a href="{% url 'BBS:post-delete' post.id %}" class="card-link text-danger">Delete</a>
+                    {% endif %}
                 </div>
                 <div class="card-footer text-muted">
-                    <b>{{ post.user_info.nickname }}</b>   @ {{ post.post_time }} 
+                    <a href="{% url 'BBS:user-posts' post.user.username %}" class="text-secondary"><b>{{ post.user_info.nickname }}</b></a>
+                        @ {{ post.post_time }} 
                     {% for tag in post.my_tags %}
+                        <a href="{% url 'BBS:tag-posts' tag.name %}">
                         <span class="badge badge-info"># {{ tag.name }}</span>
+                        </a>
                     {% endfor %}
                 </div>
             </div>

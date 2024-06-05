@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Search for players</title>
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <br>
+        <div class="row">
+            <h2>Search Results For: "<i>{{ query }}</i>"</h2>
+        </div>
+        <hr>
+        <div class="row row-cols-4 justify-content-center">
+        {% for player in players %}
+            <div class="col rounded-pill shadow mx-3 mt-3 mb-3">
+                <div class="container mx-1 mt-1 mb-1">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ player }}</h5>
+                        <a href="{% url 'Stats:player' %}?player={{ player }}" class="card-link text-info">Profile</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

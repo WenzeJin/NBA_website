@@ -9,7 +9,7 @@
 
 Django5 + Bootstrap4 + SQLite3 + nba-api
 
-代码编写规范遵循PEP8
+代码编写规范遵循 PEP8
 
 ## 运行方法
 

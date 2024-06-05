@@ -6,73 +6,84 @@
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{%  static  'css/seasons.css' %}">
 {% endblock %}
 
 {% block content %}
-        <div class="table-text">
-        <h1><a href="/player/?player={{ player }}">{{ player }}</a></h1>
-        <table class="content-table" id="roster-table">
-            <thead>
+    <br>
+    <div class="container bg-white shadow rounded">
+    <div class="container">
+        <div class="row justify-content-center">
+        <div class="col">
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-md-auto">
+                    <h1>Seasons of {{ player }}</h1>
+                </div>
+            </div>
+            <br>
+            <div class="row rounded" style="overflow: scroll">
+            <table class="table">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Season</th>
+                        <th>Team</th>
+                        <th scope="col">GP</th>
+                        <th scope="col">MIN</th>
+                        <th scope="col">PTS</th>
+                        <th scope="col">FGM</th>
+                        <th scope="col">FGA</th>
+                        <th scope="col">FG %</th>
+                        <th scope="col">3PM</th>
+                        <th scope="col">3PA</th>
+                        <th scope="col">3P %</th>
+                        <th scope="col">FTM</th>
+                        <th scope="col">FTA</th>
+                        <th scope="col">FT %</th>
+                        <th scope="col">OREB</th>
+                        <th scope="col">DREB</th>
+                        <th scope="col">REB</th>
+                        <th scope="col">AST</th>
+                        <th scope="col">TOV</th>
+                        <th scope="col">STL</th>
+                        <th scope="col">BLK</th>
+                        <th scope="col">PF</th>
+                        <th scope="col">+/-</th>
+                    </tr>
+                </thead>
 
-                <tr>
-                    <th>Season</th>
-                    <th>Team</th>
-                    <th onclick="sortTable(2)">GP</th>
-                    <th onclick="sortTable(3)">MIN</th>
-                    <th onclick="sortTable(4)">PTS</th>
-                    <th onclick="sortTable(5)">FGM</th>
-                    <th onclick="sortTable(6)">FGA</th>
-                    <th onclick="sortTable(7)">FG %</th>
-                    <th onclick="sortTable(8)">3PM</th>
-                    <th onclick="sortTable(9)">3PA</th>
-                    <th onclick="sortTable(10)">3P %</th>
-                    <th onclick="sortTable(11)">FTM</th>
-                    <th onclick="sortTable(12)">FTA</th>
-                    <th onclick="sortTable(13)">FT %</th>
-                    <th onclick="sortTable(14)">OREB</th>
-                    <th onclick="sortTable(15)">DREB</th>
-                    <th onclick="sortTable(16)">REB</th>
-                    <th onclick="sortTable(17)">AST</th>
-                    <th onclick="sortTable(18)">TOV</th>
-                    <th onclick="sortTable(19)">STL</th>
-                    <th onclick="sortTable(20)">BLK</th>
-                    <th onclick="sortTable(21)">PF</th>
-                    <th onclick="sortTable(22)">+/-</th>
-                </tr>
-
-            </thead>
-
-            <tbody>
-                {% for season in seasons %}
-                <tr>
-                    <td>{{ season.season }}</td>
-                    <td><a href="/team/?team={{ season.team }}">{{ season.team }}</a></td>
-                    <td>{{ season.GP }}</td>
-                    <td>{{ season.MPG }}</td>
-                    <td>{{ season.PPG }}</td>
-                    <td>{{ season.FGMPG }}</td>
-                    <td>{{ season.FGAPG }}</td>
-                    <td>{{ season.FG_PCT }}</td>
-                    <td>{{ season.FG3MPG }}</td>
-                    <td>{{ season.FG3APG }}</td>
-                    <td>{{ season.FG3_PCT }}</td>
-                    <td>{{ season.FTMPG }}</td>
-                    <td>{{ season.FTAPG }}</td>
-                    <td>{{ season.FT_PCT }}</td>
-                    <td>{{ season.ORPG }}</td>
-                    <td>{{ season.DRPG }}</td>
-                    <td>{{ season.RPG }}</td>
-                    <td>{{ season.APG }}</td>
-                    <td>{{ season.TOVPG }}</td>
-                    <td>{{ season.SPG }}</td>
-                    <td>{{ season.BPG }}</td>
-                    <td>{{ season.PFPG }}</td>
-                    <td>{{ season.PMPG }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-
-        </table>
+                <tbody>
+                    {% for season in seasons %}
+                    <tr>
+                        <td>{{ season.season }}</td>
+                        <td><a href="/team/?team={{ season.team }}">{{ season.team }}</a></td>
+                        <td>{{ season.GP }}</td>
+                        <td>{{ season.MPG }}</td>
+                        <td>{{ season.PPG }}</td>
+                        <td>{{ season.FGMPG }}</td>
+                        <td>{{ season.FGAPG }}</td>
+                        <td>{{ season.FG_PCT }}</td>
+                        <td>{{ season.FG3MPG }}</td>
+                        <td>{{ season.FG3APG }}</td>
+                        <td>{{ season.FG3_PCT }}</td>
+                        <td>{{ season.FTMPG }}</td>
+                        <td>{{ season.FTAPG }}</td>
+                        <td>{{ season.FT_PCT }}</td>
+                        <td>{{ season.ORPG }}</td>
+                        <td>{{ season.DRPG }}</td>
+                        <td>{{ season.RPG }}</td>
+                        <td>{{ season.APG }}</td>
+                        <td>{{ season.TOVPG }}</td>
+                        <td>{{ season.SPG }}</td>
+                        <td>{{ season.BPG }}</td>
+                        <td>{{ season.PFPG }}</td>
+                        <td>{{ season.PMPG }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    </div>
     </div>
 {% endblock %}

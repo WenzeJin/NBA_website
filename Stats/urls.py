@@ -16,4 +16,5 @@ urlpatterns = [
     path('matches/', views.matches_view, name='matches'),
     path('leagueleaders/', views.league_leaders_view, name='league_leaders'),
     path('playerseasons/', views.player_seasons_view, name='player_seasons'),
+    path('searchplayers/', views.search_player, name='search-players'),
 ]
