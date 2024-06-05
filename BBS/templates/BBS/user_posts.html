@@ -1,0 +1,9 @@
+{% extends 'BBS/index.html' %}
+
+{% block title %}
+<title>{{ profile.nickname }}'s Posts</title>
+{% endblock %}
+
+{% block optional_welcome %}
+    <h1 class="display-4">Posts of <i><b>{{ profile.nickname }}</b></i></h1>
+{% endblock %}
