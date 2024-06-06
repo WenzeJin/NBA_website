@@ -23,9 +23,11 @@ def user_register(request):
         if form.is_valid():
             user = form.save()
             create_user_info(user)
-            return HttpResponse('Registration successful')
+            messages.success(request, 'Your account has been created!')
+            return redirect('BBS:login')
         else:
-            return HttpResponse('Form was invalid')
+            messages.error(request, 'Invalid username or password.')
+            return redirect('BBS:register')
     else:
         form = UserCreationForm()
     return render(request, 'BBS/register.html', {'form': form})

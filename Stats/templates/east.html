@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     <title>East</title>
 {% endblock %}
 
+{% block style %}
+    <link rel="stylesheet" href="{%  static  'css/table.css' %}">
+{% endblock %}
+
 {% block content %}
     <div class="table-text">
-        <h1> East</h1>
+        <h1>East</h1>
         <table class="content-table" align="center">
             <thead>
 
